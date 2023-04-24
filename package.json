@@ -1,0 +1,17 @@
+{
+  "name": "pizza",
+  "version": "1.0.0",
+  "description": "node",
+  "main": "index-select.js",
+  "scripts": {
+    "todo": "node index-select.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "phatu",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "country-currency-map": "^2.1.7",
+    "mssql": "^9.1.1"
+  }
+}
