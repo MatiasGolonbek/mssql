@@ -25,18 +25,21 @@ app.delete('/:id', async (req, res) => {
 
 })
 
-app.put('/:update', async(req, res) => {
+/*app.put('/update/:id/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
     let svc = new PizzaService();
     let nuevaPizza = new Pizza(2, "Pizzadddff", true, 100, "dios")
     let afectados  = await svc.update(nuevaPizza);
     res.send(afectados);
-})
+})*/
 
-app.post('/:id', async(req, res) => {
+app.post('/insert/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
+    try{
     let svc = new PizzaService();
-    let nuevaPizza = new Pizza(66, "Pizza", true, 666, "messi");
-    let afectados  = await svc.insert(req.body.Nombre, req.body.LibreGluten, req.body.Importe,req.body.Descripcion)
-    console.log(afectados)
+    let afectados  = await svc.insert(req.params.Nombre, req.params.LibreGluten, req.params.Importe, req.params.Descripcion)
+    res.send(afectados)
+    }catch(error){
+        res.send("error");
+    }
 })
 
 app.listen(port,()=>{

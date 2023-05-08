@@ -33,16 +33,16 @@ export default class PizzaService
         }
         return returnEntity;
     }
-    insert = async (pizza) => {
+    insert = async (nombre,libregluten,importe,descripcion) => {
         let rowsAffected = 0;
         console.log('Estoy en: PizzaService.insert(id)');
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-            .input('pNombre' , sql.VarChar, pizza?.nombre ??'')
-            .input('pLibreGluten' , sql.Bit, pizza?.libreGluten ??'')
-            .input('pImporte' , sql.Float, pizza?.importe ??'')
-            .input('pDescripcion' , sql.VarChar, pizza?.descripcion ??'')
+            .input('pNombre' , sql.VarChar, nombre)
+            .input('pLibreGluten' , sql.Bit, libreGluten )
+            .input('pImporte' , sql.Float, importe )
+            .input('pDescripcion' , sql.VarChar, descripcion)
 
                                 .query('insert into Pizzas( Nombre, LibreGluten, Importe, Descripcion) VALUES ( @pNombre, @pLibreGluten, @pImporte, @pDescripcion)');
         rowsAffected = result.rowsAffected;    
