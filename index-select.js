@@ -2,11 +2,11 @@ import config from "./dbconfig.js";
 import sql from 'mssql';
 import Pizza from "./models/pizza.js";
 import PizzaService from "./services/pizzas-services.js";
-//await testGetAll();
-//await testInsert();
+await testGetAll();
+await testInsert();
 await testUpdate();
-// await testDelete();
-//await testGetById();
+ await testDelete();
+await testGetById();
 
 async function testGetById(){
     let svc = new PizzaService();
