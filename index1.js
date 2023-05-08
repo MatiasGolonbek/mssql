@@ -22,19 +22,20 @@ app.delete('/:id', async (req, res) => {
       res.send(pizzita);
 
 
+
 })
 
-app.put('/:id', async(req, res) => {
+app.put('/:update', async(req, res) => {
     let svc = new PizzaService();
     let nuevaPizza = new Pizza(2, "Pizzadddff", true, 100, "dios")
     let afectados  = await svc.update(nuevaPizza);
     res.send(afectados);
 })
 
-app.insert('/:id', async(req, res) => {
+app.post('/:id', async(req, res) => {
     let svc = new PizzaService();
     let nuevaPizza = new Pizza(66, "Pizza", true, 666, "messi");
-    let afectados  = await svc.insert(nuevaPizza)
+    let afectados  = await svc.insert(req.body.Nombre, req.body.LibreGluten, req.body.Importe,req.body.Descripcion)
     console.log(afectados)
 })
 
