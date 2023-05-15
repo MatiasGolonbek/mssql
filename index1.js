@@ -39,11 +39,13 @@ app.put('/update/:id/:nombre/:libregluten/:importe/:descripcion', async(req, res
 
 app.post('/insert/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
     try{
-    let svc = new PizzaService();
+        let svc = new PizzaService();
     let afectados  = await svc.insert(req.params.nombre, req.params.libregluten, req.params.importe, req.params.descripcion);
-    res.send(afectados)
-    }catch(error){
+    res.send(afectados);}
+    catch(error)
+    {
         res.send("error");
+
     }
 })
 

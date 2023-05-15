@@ -40,7 +40,7 @@ export default class PizzaService
             let pool = await sql.connect(config);
             let result = await pool.request()
             .input('pNombre' , sql.VarChar, nombre)
-            .input('pLibreGluten' , sql.Bit, libreGluten )
+            .input('pLibreGluten' , sql.Bit, libregluten )
             .input('pImporte' , sql.Float, importe )
             .input('pDescripcion' , sql.VarChar, descripcion)
 
