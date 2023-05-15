@@ -52,17 +52,17 @@ export default class PizzaService
         return rowsAffected;
     }
 
-    update = async (pizza) => {
-        let rowsAffected = 0;
+    update = async (id,nombre,libreGluten,importe,descripcion) => {
+        let rowsAffected = null;
         console.log('Estoy en: PizzaService.update(pizza)');
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .input('pId' , sql.Int, pizza?.id ??'')
-                .input('pNombre' , sql.VarChar, pizza?.nombre ??'')
-                .input('pLibreGluten' , sql.Bit, pizza?.libreGluten ??'')
-                .input('pImporte' , sql.Float, pizza?.importe ??'')
-                .input('pDescripcion' , sql.VarChar, pizza?.descripcion ??'')
+                .input('pId' , sql.Int, id)
+                .input('pNombre' , sql.VarChar, nombre)
+                .input('pLibreGluten' , sql.Bit, libreGluten)
+                .input('pImporte' , sql.Float, importe)
+                .input('pDescripcion' , sql.VarChar, descripcion)
                 .query('update Pizzas set Nombre = @pNombre, LibreGluten = @pLibreGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
         rowsAffected = result.rowsAffected;    
         } catch (error) {
