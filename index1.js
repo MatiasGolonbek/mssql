@@ -4,19 +4,23 @@ import PizzaService from "./services/pizzas-services.js";
 const app  = express();
 const port = 3000;
 
-app.get('/', async (req, res) => {
+app.use(cors());
+app.use(express.json());
+app.use(express.static('public'));
+
+app.get('/api/pizzas/', async (req, res) => {
     let svc = new PizzaService();
     let pizzita = await svc.getAll();
       res.send(pizzita);
 })
 
-app.get('/:id', async (req, res) => {
+app.get('/api/pizzas/:id', async (req, res) => {
     let svc = new PizzaService();
     let pizzita = await svc.getByID(req.params.id);
       res.send(pizzita);
 })
 
-app.delete('/:id', async (req, res) => {
+app.delete('/api/pizzas/:id', async (req, res) => {
     let svc = new PizzaService();
     let pizzita = await svc.deleteById(req.params.id);
       res.send(pizzita);
@@ -25,7 +29,7 @@ app.delete('/:id', async (req, res) => {
 
 })
 
-app.put('/update/:id/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
+app.put('/api/pizzas/update/:id/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
     try{
         let svc = new PizzaService();
     let afectados  = await svc.update(req.params.id, req.params.nombre, req.params.libregluten, req.params.importe, req.params.descripcion);
@@ -37,7 +41,7 @@ app.put('/update/:id/:nombre/:libregluten/:importe/:descripcion', async(req, res
     }
 })
 
-app.post('/insert/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
+app.post('/api/pizzas/insert/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
     try{
         let svc = new PizzaService();
     let afectados  = await svc.insert(req.params.nombre, req.params.libregluten, req.params.importe, req.params.descripcion);
