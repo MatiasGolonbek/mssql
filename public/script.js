@@ -31,13 +31,13 @@ function CargarTodo() {
           contenedor.innerHTML = ""
           
           arr.map((item) => {
-            /*if (item.LibreGluten=true) {
+            if (item.LibreGluten==true) {
               Gluten = "Si" 
             }
             else 
             {
                Gluten = "No"
-            }*/
+            }
               contenedor.innerHTML += `
               <div class="col-4">
                     <div class="colorCard card border-success mb-3 cardPokemon" style="max-width: 20rem;">
@@ -45,7 +45,7 @@ function CargarTodo() {
                        <div class="card-body text-success card-group">
                        <p>Importe: $${item.Importe}</p>
                        <p>Descripcion: ${item.Descripcion}</p>
-                       <p>Gluten: ${item.LibreGluten}</p>
+                       <p>Gluten: ${Gluten}</p>
                   </div>
                   <div class="card-footer bg-transparent border-success"> 
                   </div>
