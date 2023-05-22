@@ -6,7 +6,8 @@
   "scripts": {
     "todo": "node index-select.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "mati": "node index1.js"
+    "mati": "node index1.js",
+    "start": "node server.js"
   },
   "author": "phatu",
   "license": "ISC",
@@ -16,5 +17,6 @@
     "country-currency-map": "^2.1.7",
     "express": "^4.18.2",
     "mssql": "^9.1.1"
-  }
+  },
+  "devDependencies": {}
 }
