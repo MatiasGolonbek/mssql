@@ -42,3 +42,12 @@ img{
     width: 105px;
     height: 40px; 
 }
+@font-face {
+    font-family: Uber;
+    src: url(UberMoveBold.otf);
+  }
+p{
+    color: rgb(110, 8, 8);
+    font-family: Uber;
+    float: left;
+}
