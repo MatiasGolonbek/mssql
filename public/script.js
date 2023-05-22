@@ -64,16 +64,24 @@ function CargarTodo() {
       });
 }
 function InsertPizza() {
-  let nombre = document.getElementById("nombre").value
-  let gluten = document.getElementById("gluten").value
-  let importe = document.getElementById("importe").value
-  let descripcion = document.getElementById("descripcion").value
-  console.log("http://localhost:3000/delete?id=" + nombre + "&glutenFree=" + gluten + "&importe" + importe + "&descripcion" + descripcion)
+  let nombre = document.getElementById("nombre")
+  let gluten = document.getElementById("gluten")
+  let importe = document.getElementById("importe")
+  let descripcion = document.getElementById("descripcion")
+  //let id = document.getElementById("id")
+  let cuerpo = {
+    "Nombre": nombre,
+    "LibreGluten": gluten,
+    "Importe": importe,
+    "Descripcion":descripcion
+}
+  console.log("http://localhost:3000/api/pizzas", cuerpo)
   axios
-      .post("http://localhost:3000/insert?nombre=" + nombre + "&glutenFree=" + gluten + "&importe" + importe + "&descripcion" + descripcion)
+      .post("http://localhost:3000/api/pizzas/", cuerpo)
       .then((result) => {
           console.log(result.data)
           CargarTodo()
+          
       })
       .catch((error) => {
           console.log(error);

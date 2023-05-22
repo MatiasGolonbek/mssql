@@ -29,10 +29,11 @@ app.delete('/api/pizzas/:id', async (req, res) => {
 
 })
 
-app.put('/api/pizzas/update/:id/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
+app.put('/api/pizzas/', async(req, res) => {
+
     try{
         let svc = new PizzaService();
-    let afectados  = await svc.update(req.params.id, req.params.nombre, req.params.libregluten, req.params.importe, req.params.descripcion);
+    let afectados  = await svc.update(cuerpo);
     res.send(afectados);}
     catch(error)
     {
@@ -41,10 +42,14 @@ app.put('/api/pizzas/update/:id/:nombre/:libregluten/:importe/:descripcion', asy
     }
 })
 
-app.post('/api/pizzas/insert/:nombre/:libregluten/:importe/:descripcion', async(req, res) => {
+app.post('/api/pizzas/', async(req, res) => {
+    let  cuerpo = req.body;
+    console.log(cuerpo);
+    res.send("ok");
+    return;
     try{
         let svc = new PizzaService();
-    let afectados  = await svc.insert(req.params.nombre, req.params.libregluten, req.params.importe, req.params.descripcion);
+    let afectados  = await svc.insert(cuerpo);
     res.send(afectados);}
     catch(error)
     {

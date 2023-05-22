@@ -12,10 +12,26 @@
   </head>
   <body>
     <button onclick="CargarTodo()">Cargar Todo</button>
-
-
+    <div class="mb-3">
+      <label class="form-label">Nombre Pizza</label>
+      <input type="text" class="form-control" id="Nombre" placeholder="nombrePizza">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">gluten</label>
+      <input type="checkbox" class="form-control" id="Gluten" placeholder="gluten">
+    </div>
+    <div class="mb-3">
+      <label  class="form-label">importe</label>
+      <input type="number" class="form-control"id="importe" placeholder="importe">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">descripcion</label>
+      <input type="text" class="form-control" id="Descripcion" placeholder="descripcion">
+    </div>
+    
     <div class="container m-auto">
     <div id="listado" class="row"></div></div>
+    <button type="submit" class="btn btn-primary" onclick="InsertPizza()">Enviar</button>
   </body>
 </html>
 
