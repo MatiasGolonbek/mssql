@@ -64,21 +64,52 @@ function CargarTodo() {
       });
 }
 function InsertPizza() {
-  let nombre = document.getElementById("nombre")
-  let gluten = document.getElementById("gluten")
-  let importe = document.getElementById("importe")
-  let descripcion = document.getElementById("descripcion")
+  let nombre = document.getElementById("nombre").value;
+  let gluten = document.getElementById("gluten").checked;
+  let importe = document.getElementById("importe").value;
+  let descripcion = document.getElementById("descripcion").value;
   //let id = document.getElementById("id")
   let cuerpo = {
     "Nombre": nombre,
     "LibreGluten": gluten,
     "Importe": importe,
     "Descripcion":descripcion
-}
+  }
+  console.log(cuerpo);
   console.log("http://localhost:3000/api/pizzas", cuerpo)
   axios
       .post("http://localhost:3000/api/pizzas/", cuerpo)
       .then((result) => {
+          console.log("OK");
+          console.log(result.data)
+          CargarTodo()
+          
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+}
+
+function UpdatePizza() {
+  let id = document.getElementById("id").value;
+  let nombre = document.getElementById("nombre").value;
+  let gluten = document.getElementById("gluten").checked;
+  let importe = document.getElementById("importe").value;
+  let descripcion = document.getElementById("descripcion").value;
+  //let id = document.getElementById("id")
+  let cuerpo = {
+    "id":id,
+    "nombre": nombre,
+    "libreGluten": gluten,
+    "importe": importe,
+    "descripcion":descripcion
+  }
+  console.log(cuerpo);
+  console.log("http://localhost:3000/api/pizzas", cuerpo)
+  axios
+      .put("http://localhost:3000/api/pizzas/", cuerpo)
+      .then((result) => {
+          console.log("OK");
           console.log(result.data)
           CargarTodo()
           

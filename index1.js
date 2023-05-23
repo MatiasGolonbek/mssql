@@ -45,8 +45,6 @@ app.put('/api/pizzas/', async(req, res) => {
 app.post('/api/pizzas/', async(req, res) => {
     let  cuerpo = req.body;
     console.log(cuerpo);
-    res.send("ok");
-    return;
     try{
         let svc = new PizzaService();
     let afectados  = await svc.insert(cuerpo);
