@@ -59,10 +59,10 @@ export default class PizzaService
             let pool = await sql.connect(config);
             let result = await pool.request()
                 .input('pId' , sql.Int, id)
-                .input('pNombre' , sql.VarChar, nombre)
-                .input('pLibreGluten' , sql.Bit, libreGluten)
-                .input('pImporte' , sql.Float, importe)
-                .input('pDescripcion' , sql.VarChar, descripcion)
+                .input('pNombre' , sql.VarChar, Nombre)
+                .input('pLibreGluten' , sql.Bit, LibreGluten)
+                .input('pImporte' , sql.Float, Importe)
+                .input('pDescripcion' , sql.VarChar, Descripcion)
                 .query('update Pizzas set Nombre = @pNombre, LibreGluten = @pLibreGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
         rowsAffected = result.rowsAffected;    
         } catch (error) {

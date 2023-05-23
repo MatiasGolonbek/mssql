@@ -98,19 +98,20 @@ function UpdatePizza() {
   let descripcion = document.getElementById("descripcion").value;
   //let id = document.getElementById("id")
   let cuerpo = {
-    "id":id,
-    "nombre": nombre,
-    "libreGluten": gluten,
-    "importe": importe,
-    "descripcion":descripcion
+    "Id":id,
+    "Nombre": nombre,
+    "LibreGluten": gluten,
+    "Importe": importe,
+    "Descripcion":descripcion
   }
   console.log(cuerpo);
-  console.log("http://localhost:3000/api/pizzas", cuerpo)
+  console.log(`http://localhost:3000/api/pizzas/${id}`, cuerpo)
   axios
-      .put("http://localhost:3000/api/pizzas/", cuerpo)
+      .put(`http://localhost:3000/api/pizzas/${id}`, cuerpo)
       .then((result) => {
           console.log("OK");
           console.log(result.data)
+          contenedor.innerHTML += `se actualizó la pizza numero: ${id} `
           CargarTodo()
           
       })
