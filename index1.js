@@ -29,14 +29,15 @@ app.delete('/api/pizzas/:id', async (req, res) => {
 
 })
 
-app.put('/api/pizzas/', async(req, res) => {
-
+app.put('/api/pizzas/:id', async(req, res) => {
+    let cuerpo = req.body;
+    console.log('estoy en Update');
     try{
         let svc = new PizzaService();
-    let afectados  = await svc.update(cuerpo);
-    res.send(afectados);}
-    catch(error)
-    {
+        let afectados  = await svc.update(cuerpo, req.params.id);
+        res.send(afectados);
+    } catch(error){
+        console.log(error);
         res.send("error");
 
     }

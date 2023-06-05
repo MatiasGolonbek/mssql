@@ -34,7 +34,7 @@ export default class PizzaService
         return returnEntity;
     }
     insert = async (pizza) => {
-        let rowsAffected = 0;
+        let rowsAffected = null;
         console.log('Estoy en: PizzaService.insert(id)');
         try {
             let pool = await sql.connect(config);
@@ -52,18 +52,21 @@ export default class PizzaService
         return rowsAffected;
     }
 
-    update = async (id,nombre,libreGluten,importe,descripcion) => {
+    update = async (pizza, id) => {
         let rowsAffected = null;
         console.log('Estoy en: PizzaService.update(pizza)');
+        console.log(pizza);
+        console.log(id);
         try {
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .input('pId' , sql.Int, id)
-                .input('pNombre' , sql.VarChar, Nombre)
-                .input('pLibreGluten' , sql.Bit, LibreGluten)
-                .input('pImporte' , sql.Float, Importe)
-                .input('pDescripcion' , sql.VarChar, Descripcion)
-                .query('update Pizzas set Nombre = @pNombre, LibreGluten = @pLibreGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
+                .input('pId', sql.Int, pizza.id)
+                .input('pNombre' , sql.VarChar, pizza.nombre)
+                .input('pLibreGluten' , sql.Bit, pizza.libreGluten)
+                .input('pImporte' , sql.Float, pizza.importe)
+                .input('pDescripcion' , sql.VarChar, pizza.descripcion)
+                .query('UPDATE Pizzas set Nombre = @pNombre, LibreGluten = @pLibreGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
+                
         rowsAffected = result.rowsAffected;    
         } catch (error) {
             console.log(error);

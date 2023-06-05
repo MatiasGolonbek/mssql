@@ -93,10 +93,16 @@ function InsertPizza() {
 function UpdatePizza() {
   let id = document.getElementById("id").value;
   let nombre = document.getElementById("nombre").value;
-  let gluten = document.getElementById("gluten").checked;
+  let gluten = document.getElementById("libreGluten").checked;
   let importe = document.getElementById("importe").value;
   let descripcion = document.getElementById("descripcion").value;
   //let id = document.getElementById("id")
+
+  if (libreGluten==1) {
+    libreGluten==true;
+  }else{
+    libreGluten==false;
+  }
   let cuerpo = {
     "Id":id,
     "Nombre": nombre,
@@ -105,14 +111,16 @@ function UpdatePizza() {
     "Descripcion":descripcion
   }
   console.log(cuerpo);
-  console.log(`http://localhost:3000/api/pizzas/${id}`, cuerpo)
+  console.log('http://localhost:3000/api/pizzas/'+id + cuerpo)
   axios
-      .put(`http://localhost:3000/api/pizzas/${id}`, cuerpo)
+      .put('http://localhost:3000/api/pizzas/'+id + cuerpo)
       .then((result) => {
           console.log("OK");
           console.log(result.data)
-          contenedor.innerHTML += `se actualizó la pizza numero: ${id} `
+          console.log(cuerpo)
           CargarTodo()
+          listado.innerHTML += `se actualizó la pizza numero: ${id} `
+          
           
       })
       .catch((error) => {
