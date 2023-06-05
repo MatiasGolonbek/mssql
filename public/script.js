@@ -103,17 +103,18 @@ function UpdatePizza() {
   }else{
     libreGluten==false;
   }
-  let cuerpo = {
-    "Id":id,
-    "Nombre": nombre,
-    "LibreGluten": gluten,
-    "Importe": importe,
-    "Descripcion":descripcion
+  const cuerpo = {
+    id:id,
+    nombre: nombre,
+    libreGluten: gluten,
+    importe: importe,
+    descripcion:descripcion
   }
   console.log(cuerpo);
-  console.log('http://localhost:3000/api/pizzas/'+id + cuerpo)
+  var url='http://localhost:3000/api/pizzas/'+id
+  
   axios
-      .put('http://localhost:3000/api/pizzas/'+id + cuerpo)
+      .put(url,cuerpo)
       .then((result) => {
           console.log("OK");
           console.log(result.data)
