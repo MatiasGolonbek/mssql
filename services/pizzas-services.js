@@ -1,5 +1,7 @@
 import config from "../dbconfig.js";
 import sql from 'mssql';
+import IngredientesXPizzaService from './IngredientesXPizzaService.js';
+const ixPs = new IngredientesXPizzaService();
 
 export default class PizzaService 
     {
@@ -17,7 +19,22 @@ export default class PizzaService
             }
             return returnEntity;
         }
-    
+        getByIDPizza = async (idPizza)=> {
+            let returnEntity = null;
+            console.log('Estoy en: PizzaService.GetById(id)');
+            try {
+                let pool = await sql.connect(config);
+                let result = await pool.request()
+                .input('pIdPizza', sql.Int, idPizza)
+                .query('select Ingredientes.Id,                Ingredientes.Nombre FROM IngredientesXPizzas                INNER JOIN Ingredientes on IngredientesXPizzas.IdIngrediente = Ingredientes.Id Where IdPizza = @pIdPizza');
+                returnEntity = result.recordsets;
+            } catch (error) {
+                console.log(error)
+                
+            }
+            return returnEntity;
+        }
+
     getByID = async (id)=> {
         let returnEntity = null;
         console.log('Estoy en: PizzaService.GetById(id)');
@@ -27,6 +44,7 @@ export default class PizzaService
             .input('pId', sql.Int, id)
             .query('select * from Pizzas Where id = @pId');
             returnEntity = result.recordsets[0][0];
+            returnEntity.Ingredientes = await ixPs.getByIDPizza(id);
         } catch (error) {
             console.log(error)
             
